@@ -1,0 +1,104 @@
+//31. Faça um programa que simule um jogo de Joken Po.
+#include <stdio.h>
+#include <stdlib.h>
+#include <time.h>
+
+
+int main()
+{
+int j, x;
+
+printf("Bem vindo ao JOKEN PO!\n");
+
+  ini:
+  j = 0;
+  x = 0;
+//Menu de Seleção     
+printf("\nPedra(1)\nPapel(2)\nTesoura(3)\nSair(Outro)\n\nEscolha sua ação: \n");
+  scanf("%d", &j);
+
+    if (j == 1) //PEDRA
+    {
+      printf("VOCÊ ESCOLHEU PEDRA!\n\n");
+      goto INIMIGO;
+    }
+      else if (j == 2)//PAPEL
+      {
+        printf("VOCÊ ESCOLHEU PAPEL!\n\n");
+      goto INIMIGO;
+      }
+        else if (j == 3)//TESOURA
+        {
+          printf("VOCÊ ESCOLHEU TESOURA!\n\n");
+      goto INIMIGO;
+        }
+  else
+    {
+      goto fim;
+    }
+    //Jogada do inimigo
+INIMIGO:
+srand(time(NULL));
+x = rand() % 2;
+  if (x == 0) //PEDRA
+  {
+    if (j == 1)//PEDRA-PEDRA
+    {
+      printf("O INIMIGO ESCOLHEU PEDRA! EMPATE! JOGUE DE NOVO!\n");
+      goto ini;
+    }
+    else if(j == 2)//PEDRA-PAPEL
+    {
+      printf("O INIMIGO ESCOLHEU PEDRA! VOCÊ VENCEU!\n");
+      goto fim;
+    }
+    else//PEDRA-TESOURA
+    {
+       printf("O INIMIGO ESCOLHEU PEDRA! VOCÊ PERDEU!\n");
+      goto fim;
+    }
+  }
+
+  else if(x == 1) //PAPEL
+  {
+    if (j == 1)//PAPEL-PEDRA
+    {
+      printf("O INIMIGO ESCOLHEU PAPEL! VOCÊ PERDEU!\n");
+      goto fim;
+    }
+    else if(j == 2)//PAPEL-PAPEL
+    {
+      printf("O INIMIGO ESCOLHEU PAPEL! EMPATE! JOGUE DE NOVO!\n");
+      goto ini;
+    }
+    else//PAPEL-TESOURA
+    {
+       printf("O INIMIGO ESCOLHEU PAPEL! VOCÊ VENCEU!\n");
+      goto fim;
+    }
+    }
+  else//TESOURA
+  {
+    if (j == 1)//TESOURA-PEDRA
+    {
+      printf("O INIMIGO ESCOLHEU TESOURA! VOCÊ VENCEU!\n");
+      goto fim;
+    }
+    else if(j == 2)//TESOURA-PAPEL
+    {
+      printf("O INIMIGO ESCOLHEU TESOURA! VOCÊ PERDEU!\n");
+      goto fim;
+    }
+    else//TESOURA-TESOURA
+    {
+       printf("O INIMIGO ESCOLHEU TESOURA! EMPATE! JOGUE DE NOVO!\n");
+      goto ini;
+    }
+  }
+
+    fim:
+    printf("FIM DE JOGO");
+
+  return 0;
+  
+}
